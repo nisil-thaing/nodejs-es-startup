@@ -1,0 +1,34 @@
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const nodeModules = fs
+  .readdirSync('node_modules')
+  .reduce((acc, item) => {
+    if (['.bin'].indexOf(item) === -1) {
+      acc[item] = `commonjs ${ item }`;
+    }
+
+    return acc;
+  }, {});
+
+module.exports = {
+  entry: './src/app',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js'
+  },
+  resolve: { extensions: ['.js', '.jsx'] },
+  externals: nodeModules,
+  target: 'node',
+  module: {
+    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
+  ]
+};
