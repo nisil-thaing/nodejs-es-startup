@@ -5,4 +5,4 @@ export const homeController = (req, res) => {
     message: 'Welcome to API sekeleton.',
     version: pkg.version,
   });
-}
+};

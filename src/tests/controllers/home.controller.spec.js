@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { app, server } from '../../app';
 
 describe('GET /', () => {
-  it('should return 200 OK', async(done) => {
+  it('should return 200 OK', async done => {
     try {
       const res = await request(app).get('/');
       expect(res.status).to.equal(200);

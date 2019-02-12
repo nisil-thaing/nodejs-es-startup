@@ -8,6 +8,7 @@
     "build-dev": "NODE_ENV=development webpack --config webpack.dev.js",
     "build-prod": "NODE_ENV=production webpack --config webpack.prod.js",
     "prod": "npm run build-prod && NODE_ENV=production node dist/main.bundle",
+    "lint": "eslint ./src",
     "test": "jest"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^1.0.1",
+    "eslint": "^5.13.0",
     "jest": "^24.1.0",
     "mocha": "^5.2.0",
     "supertest": "^3.4.2",
