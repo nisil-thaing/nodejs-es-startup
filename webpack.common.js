@@ -19,11 +19,18 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js'
   },
-  resolve: { extensions: ['.js', '.jsx'] },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@root': path.resolve(__dirname),
+      '@app': path.resolve(__dirname, 'src', 'app'),
+      '@tests': path.resolve(__dirname, 'src', 'tests'),
+    }
+  },
   externals: nodeModules,
   target: 'node',
   module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
+    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),

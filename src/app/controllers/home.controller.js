@@ -1,4 +1,4 @@
-const pkg = require(`${ __dirname }/../../../package.json`);
+const pkg = require('@root/package.json');
 
 export const homeController = (req, res) => {
   res.json({

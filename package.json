@@ -5,11 +5,12 @@
   "author": "Isaac Nisillus",
   "license": "ISC",
   "scripts": {
+    "start": "npm run build-dev && NODE_ENV=development nodemon dist/main.bundle",
     "build-dev": "NODE_ENV=development webpack --config webpack.dev.js",
     "build-prod": "NODE_ENV=production webpack --config webpack.prod.js",
-    "prod": "npm run build-prod && NODE_ENV=production node dist/main.bundle",
+    "prod": "npm run build-prod && NODE_ENV=production nodemon dist/main.bundle",
     "lint": "eslint ./src",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -25,6 +26,7 @@
     "eslint": "^5.13.0",
     "jest": "^24.1.0",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.10",
     "supertest": "^3.4.2",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
