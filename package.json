@@ -5,7 +5,7 @@
   "author": "Isaac Nisillus",
   "license": "ISC",
   "scripts": {
-    "start": "npm run build-dev && NODE_ENV=development nodemon dist/main.bundle",
+    "start": "nodemon --exec babel-node src/app/index.js",
     "build-dev": "NODE_ENV=development webpack --config webpack.dev.js",
     "build-prod": "NODE_ENV=production webpack --config webpack.prod.js",
     "prod": "npm run build-prod && NODE_ENV=production nodemon dist/main.bundle",
@@ -14,13 +14,17 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-module-resolver": "^3.2.0",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^1.0.1",
     "eslint": "^5.13.0",

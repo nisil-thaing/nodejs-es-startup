@@ -8,5 +8,17 @@
         }
       }
     ]
+  ],
+  "plugins": [
+    [
+      "module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "@root": "./",
+          "@app": "./src/app",
+          "@tests": "./src/tests"
+        }
+      }
+    ]
   ]
 }
