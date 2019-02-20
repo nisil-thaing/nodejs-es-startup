@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
@@ -6,10 +5,12 @@ import express from 'express';
 import routes from '@app/routes';
 import { homeController } from '@app/controllers/home.controller';
 
-const app = express();
-dotenv.config();
+import envVars from './env-variables';
 
-app.set('port', process.env.PORT || 3000);
+const app = express();
+
+app.set('env', envVars.env);
+app.set('port', envVars.port);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

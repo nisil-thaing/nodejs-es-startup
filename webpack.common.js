@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const nodeModules = fs
@@ -33,9 +32,6 @@ module.exports = {
     rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
+    new CleanWebpackPlugin(['dist'])
   ]
 };
