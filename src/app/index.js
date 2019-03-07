@@ -1,9 +1,17 @@
-import { app } from '@app/configs';
+import {
+  app,
+  connectToServer,
+  dbConnect
+} from '@app/configs';
 
-const server = app.listen(app.get('port'), () => {
-  console.log(('App is running at http://localhost:%d in %s mode'),
-    app.get('port'), app.get('env'));
-  console.log('Press CTRL-C to stop\n');
-});
+(async function () {
+  try {
+    const message = await dbConnect();
+    console.log(message);
+    connectToServer();
+  } catch (error) {
+    throw new Error(error);
+  }
+})();
 
-export { app, server };
+export default app;

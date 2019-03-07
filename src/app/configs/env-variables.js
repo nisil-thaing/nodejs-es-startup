@@ -5,7 +5,12 @@ const envVarsSchema = Joi.object().keys({
     .allow(['development', 'production'])
     .default('development'),
   PORT: Joi.number()
-    .default(3000)
+    .default(3000),
+  MONGO_HOST: Joi.string()
+    .default('mongodb://localhost/mean')
+    .description('Mongo DB host url'),
+  MONGO_PORT: Joi.number()
+    .default(27017)
 }).unknown().required();
 
 const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
@@ -16,7 +21,11 @@ if (error) {
 
 const config = {
   env: envVars.NODE_ENV,
-  port: envVars.PORT
+  port: envVars.PORT,
+  mongo: {
+    host: envVars.MONGO_HOST,
+    port: envVars.MONGO_PORT
+  }
 };
 
 export default config;

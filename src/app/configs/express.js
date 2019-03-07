@@ -19,4 +19,16 @@ app.use('/api', routes);
 
 app.get('/', homeController);
 
-export default app;
+function connectToServer() {
+  app.listen(app.get('port'), () => {
+    console.log(('App is running at http://localhost:%d in %s mode'),
+      app.get('port'), app.get('env'));
+    console.log('Press CTRL-C to stop\n');
+  });
+}
+
+export {
+  app,
+  connectToServer
+};
+
