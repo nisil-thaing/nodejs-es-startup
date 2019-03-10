@@ -1,14 +1,9 @@
 function tryCatchAsyncHandler(func) {
-  return async function(...args) { 
+  return (...args) => { 
     const resolveFn = func(...args);
     const nextFn = args[args.length - 1];
 
-    try {
-      const resolver = Promise.resolve(resolveFn);
-      return resolver;
-    } catch (error) {
-      return nextFn(error);
-    }
+    return Promise.resolve(resolveFn).catch(nextFn);
   };
 }
 
