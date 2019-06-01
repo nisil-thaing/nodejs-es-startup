@@ -1,4 +1,7 @@
 import Joi from 'joi';
+import { config as dotEnvConfig } from 'dotenv';
+
+dotEnvConfig();
 
 const envVarsSchema = Joi.object().keys({
   NODE_ENV: Joi.string()
@@ -6,6 +9,9 @@ const envVarsSchema = Joi.object().keys({
     .default('development'),
   PORT: Joi.number()
     .default(3000),
+  JWT_SECRET: Joi.string()
+    .required()
+    .description('JWT Secret required to sign'),
   MONGO_HOST: Joi.string()
     .default('mongodb://localhost/mean')
     .description('Mongo DB host url'),
@@ -19,12 +25,20 @@ if (error) {
   throw new Error(`Config validation error: ${ error.message }`);
 }
 
+const {
+  NODE_ENV: env,
+  PORT: port,
+  JWT_SECRET: jwtSecret,
+  MONGO_HOST,
+  MONGO_PORT
+} = envVars;
 const config = {
-  env: envVars.NODE_ENV,
-  port: envVars.PORT,
+  env,
+  port,
+  jwtSecret,
   mongo: {
-    host: envVars.MONGO_HOST,
-    port: envVars.MONGO_PORT
+    host: MONGO_HOST,
+    port: MONGO_PORT
   }
 };
 
