@@ -7,10 +7,12 @@ import {
 (async function () {
   try {
     const message = await dbConnect();
+    // eslint-disable-next-line no-console
     console.log(message);
     connectToServer();
   } catch (error) {
-    throw new Error(error);
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
 })();
 

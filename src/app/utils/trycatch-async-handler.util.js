@@ -1,5 +1,5 @@
 function tryCatchAsyncHandler(func) {
-  return (...args) => { 
+  return (...args) => {
     const resolveFn = func(...args);
     const nextFn = args[args.length - 1];
 
