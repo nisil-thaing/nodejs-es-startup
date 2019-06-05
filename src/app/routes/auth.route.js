@@ -1,12 +1,15 @@
 import { Router } from 'express';
+import passport from 'passport';
 
 import { tryCatchAsyncHandler } from '@app/utils';
 import { userCtrl, authCtrl } from '@app/controllers';
 
 const router = Router();
 
-router.route('/register')
-  .post(tryCatchAsyncHandler(register), login);
+router
+  .post('/register', tryCatchAsyncHandler(register), login)
+  .post('/login', passport.authenticate('local', { session: false }), login)
+  .get('/me', passport.authenticate('jwt', { session: false }), login);
 
 async function register(req, _, next) {
   const user = await userCtrl.addNewUser(req.body);
